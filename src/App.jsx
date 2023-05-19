@@ -1,3 +1,5 @@
+import "./App.css"
+
 import { useState } from "react";
 
 import Button from "react-bootstrap/Button";
@@ -24,7 +26,10 @@ function App() {
     <>
       <Row className="mw-100">
         <Col className="vh-100 container">
-          <aside className="m-0">
+          <aside
+            className="m-0"
+            style={{ background: "#100e1d", color: "#fff" }}
+          >
             <div className="ms-2 mt-2 d-flex justify-content-between">
               <Button variant="secondary" onClick={handleShow}>
                 Search for places
@@ -49,14 +54,22 @@ function App() {
               <PrincipalCard />
             </div>
 
-            <Offcanvas show={show} onHide={handleClose}>
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title></Offcanvas.Title>
-              </Offcanvas.Header>
+            <Offcanvas
+              show={show}
+              onHide={handleClose}
+              style={{ background: "#1e213a", color: "#fff"}}
+            >
+              <Offcanvas.Header closeButton></Offcanvas.Header>
               <Offcanvas.Body>
                 <Form className="d-flex">
-                  <InputGroup className="me-2">
-                    <InputGroup.Text id="basic-addon1">
+                  <InputGroup
+                    className="me-2"
+                    style={{ background: "#1e213a", color: "#fff" }}
+                  >
+                    <InputGroup.Text
+                      id="basic-addon1"
+                      style={{ background: "#1e213a", color: "#fff" }}
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -72,6 +85,7 @@ function App() {
                       placeholder="search location"
                       aria-label="Search"
                       aria-describedby="basic-addon1"
+                      style={{ background: "#1e213a", color: "#fff" }}
                     />
                   </InputGroup>
                   <Button variant="primary">Search</Button>
@@ -81,6 +95,7 @@ function App() {
                     action
                     href="#link1"
                     className="mb-3 d-flex justify-content-between"
+                    style={{ background: "#1e213a", color: "#fff" }}
                   >
                     <span>Zapopan</span>
                     <span>
@@ -103,6 +118,7 @@ function App() {
                     action
                     href="#link2"
                     className="mb-3 d-flex justify-content-between"
+                    style={{ background: "#1e213a", color: "#fff" }}
                   >
                     <span>Zapopan</span>
                     <span>
@@ -125,6 +141,7 @@ function App() {
                     action
                     href="#link3"
                     className="mb-3 d-flex justify-content-between"
+                    style={{ background: "#1e213a", color: "#fff" }}
                   >
                     <span>Zapopan</span>
                     <span>
@@ -149,7 +166,7 @@ function App() {
           </aside>
         </Col>
         <Col md={9} className="container">
-          <main>
+          <main className="container">
             <div className=".d-none .d-md-block .d-lg-block d-flex justify-content-end grid gap-3 mt-2">
               <Button variant="secondary" className="rounded-circle">
                 ºC
@@ -158,7 +175,7 @@ function App() {
                 ºF
               </Button>
             </div>
-            <section>
+            <section className="container">
               <Row sm={2} md={4} lg={5} className="grid">
                 {Array.from({ length: 5 }).map((_, idx) => (
                   <Col key={idx}>
@@ -167,16 +184,30 @@ function App() {
                 ))}
               </Row>
             </section>
-            <section>
-              <h2>Today&apos;s Hightlights</h2>
-              <Row md={1} lg={2}>
-                <Col><TWindCard/></Col>
-                <Col><THumidityCard/></Col>
-                <Col><TVisibilityCard/></Col>
-                <Col><TAirPCard/></Col>
+            <section className="container">
+              <h2 className="my-5">Today&apos;s Hightlights</h2>
+              <Row xs={1} md={2}>
+                <Col>
+                  <TWindCard />
+                </Col>
+                <Col>
+                  <THumidityCard />
+                </Col>
+                <Col>
+                  <TVisibilityCard />
+                </Col>
+                <Col>
+                  <TAirPCard />
+                </Col>
               </Row>
             </section>
           </main>
+          <footer className="text-center">
+            <h5>
+              created by <a href="https://github.com/MTristan012">MTristan</a> -
+              devChallenges.io
+            </h5>
+          </footer>
         </Col>
       </Row>
     </>

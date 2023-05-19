@@ -2,7 +2,7 @@ import Card from "react-bootstrap/Card";
 
 export default function TWindCard() {
   return (
-    <Card>
+    <Card style={{ background: "#1e213a", color: "#fff" }}>
       <Card.Subtitle>Wind status</Card.Subtitle>
       <Card.Title>7 mph</Card.Title>
       <Card.Text>

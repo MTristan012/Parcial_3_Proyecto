@@ -2,7 +2,10 @@ import Card from "react-bootstrap/Card";
 
 export default function SecondaryCards() {
   return (
-    <Card className="text-center border border-0">
+    <Card
+      className="text-center border border-0"
+      style={{ background: "#1e213a", color: "#fff" }}
+    >
       <Card.Title>Tomorrow</Card.Title>
       <Card.Img variant="top" src="../../public/assets/LightCloud.png" />
       <Card.Body>

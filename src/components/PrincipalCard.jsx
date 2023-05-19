@@ -2,7 +2,10 @@ import Card from "react-bootstrap/Card";
 
 export default function PrincipalCard() {
   return (
-    <Card className="border border-0">
+    <Card
+      className="border border-0"
+      style={{ background: "#1e213a", color: "#fff" }}
+    >
       <Card.Img variant="top" src="../../public/assets/Clear.png" />
       <Card.Body className="text-center">
         <Card.Title>15 ºC</Card.Title>
@@ -10,9 +13,9 @@ export default function PrincipalCard() {
         <Card.Subtitle>Shower</Card.Subtitle>
         <br />
         <Card.Text>
-            <span>Today</span>
-            <span className="mx-3">.</span>
-            <span>Fri, 5 Jun</span>
+          <span>Today</span>
+          <span className="mx-3">.</span>
+          <span>Fri, 5 Jun</span>
         </Card.Text>
         <Card.Text>
           <span className="mx-1">
