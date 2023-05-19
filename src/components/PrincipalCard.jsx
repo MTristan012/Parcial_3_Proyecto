@@ -8,6 +8,7 @@ export default function PrincipalCard() {
     >
       <Card.Img variant="top" src="../../public/assets/Clear.png" />
       <br />
+      <br />
       <Card.Body className="text-center">
         <br />
         <Card.Title
@@ -22,6 +23,7 @@ export default function PrincipalCard() {
         >
           Shower
         </Card.Subtitle>
+        <br />
         <Card.Text className="my-4">
           <span>Today</span>
           <span className="mx-3">.</span>

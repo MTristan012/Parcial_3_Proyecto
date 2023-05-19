@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 export default function TAirPCard() {
   return (
     <Card
-      style={{ background: "#1e213a", color: "#fff", height: "9rem" }}
+      style={{ background: "#1e213a", color: "#fff", height: "10.5rem" }}
       className="d-flex justify-content-center"
     >
       <Card.Subtitle

@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 export default function TWindCard() {
   return (
     <Card
-      style={{ background: "#1e213a", color: "#fff", height: "13rem" }}
+      style={{ background: "#1e213a", color: "#fff", height: "14rem" }}
       className="d-flex justify-content-center"
     >
       <Card.Subtitle

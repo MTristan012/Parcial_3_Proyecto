@@ -5,7 +5,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 export default function THumidityCard() {
   return (
     <Card
-      style={{ background: "#1e213a", color: "#fff", height: "13rem" }}
+      style={{ background: "#1e213a", color: "#fff", height: "14rem" }}
       className="d-flex justify-content-center"
     >
       <Card.Subtitle
