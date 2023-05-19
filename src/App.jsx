@@ -9,6 +9,11 @@ import InputGroup from "react-bootstrap/InputGroup";
 import ListGroup from "react-bootstrap/ListGroup";
 
 import PrincipalCard from "./components/PrincipalCard";
+import SecondaryCards from "./components/SecondaryCards";
+import TWindCard from "./components/TWindCard";
+import THumidityCard from "./components/THumidity";
+import TVisibilityCard from "./components/TVisibilityCard";
+import TAirPCard from "./components/TAirPCard";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -18,7 +23,7 @@ function App() {
   return (
     <>
       <Row className="mw-100">
-        <Col className="vh-100">
+        <Col className="vh-100 container">
           <aside className="m-0">
             <div className="ms-2 mt-2 d-flex justify-content-between">
               <Button variant="secondary" onClick={handleShow}>
@@ -143,8 +148,35 @@ function App() {
             </Offcanvas>
           </aside>
         </Col>
-        <Col md={9}>
-          <main>este es el main</main>
+        <Col md={9} className="container">
+          <main>
+            <div className=".d-none .d-md-block .d-lg-block d-flex justify-content-end grid gap-3 mt-2">
+              <Button variant="secondary" className="rounded-circle">
+                ºC
+              </Button>
+              <Button variant="secondary" className="rounded-circle">
+                ºF
+              </Button>
+            </div>
+            <section>
+              <Row sm={2} md={4} lg={5} className="grid">
+                {Array.from({ length: 5 }).map((_, idx) => (
+                  <Col key={idx}>
+                    <SecondaryCards />
+                  </Col>
+                ))}
+              </Row>
+            </section>
+            <section>
+              <h2>Today&apos;s Hightlights</h2>
+              <Row md={1} lg={2}>
+                <Col><TWindCard/></Col>
+                <Col><THumidityCard/></Col>
+                <Col><TVisibilityCard/></Col>
+                <Col><TAirPCard/></Col>
+              </Row>
+            </section>
+          </main>
         </Col>
       </Row>
     </>
