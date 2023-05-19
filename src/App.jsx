@@ -25,11 +25,11 @@ function App() {
   return (
     <>
       <Row className="mw-100">
-        <Col className="vh-100 container">
-          <aside
-            className="m-0"
-            style={{ background: "#100e1d", color: "#fff" }}
-          >
+        <Col
+          className="vh-100 container"
+          style={{ background: "#1e213a", color: "#fff" }}
+        >
+          <aside className="m-0">
             <div className="ms-2 mt-2 d-flex justify-content-between">
               <Button variant="secondary" onClick={handleShow}>
                 Search for places
@@ -50,14 +50,14 @@ function App() {
               </Button>
             </div>
 
-            <div>
-              <PrincipalCard />
-            </div>
+            <section>
+              <PrincipalCard className="mh-100" />
+            </section>
 
             <Offcanvas
               show={show}
               onHide={handleClose}
-              style={{ background: "#1e213a", color: "#fff"}}
+              style={{ background: "#1e213a", color: "#fff" }}
             >
               <Offcanvas.Header closeButton></Offcanvas.Header>
               <Offcanvas.Body>
@@ -175,8 +175,8 @@ function App() {
                 ºF
               </Button>
             </div>
-            <section className="container">
-              <Row sm={2} md={4} lg={5} className="grid">
+            <section className="container mt-3">
+              <Row sm={2} md={4} lg={5} className="grid row-gap-3">
                 {Array.from({ length: 5 }).map((_, idx) => (
                   <Col key={idx}>
                     <SecondaryCards />
@@ -185,8 +185,8 @@ function App() {
               </Row>
             </section>
             <section className="container">
-              <h2 className="my-5">Today&apos;s Hightlights</h2>
-              <Row xs={1} md={2}>
+              <h2 className="my-5 text-start">Today&apos;s Hightlights</h2>
+              <Row xs={1} md={2} className="row-gap-4">
                 <Col>
                   <TWindCard />
                 </Col>
@@ -202,7 +202,7 @@ function App() {
               </Row>
             </section>
           </main>
-          <footer className="text-center">
+          <footer className="text-center my-4">
             <h5>
               created by <a href="https://github.com/MTristan012">MTristan</a> -
               devChallenges.io
