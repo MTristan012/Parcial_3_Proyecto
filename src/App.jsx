@@ -8,6 +8,8 @@ import Col from "react-bootstrap/Col";
 import InputGroup from "react-bootstrap/InputGroup";
 import ListGroup from "react-bootstrap/ListGroup";
 
+import PrincipalCard from "./components/PrincipalCard";
+
 function App() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -15,9 +17,9 @@ function App() {
 
   return (
     <>
-      <Row>
-        <Col>
-          <aside>
+      <Row className="mw-100">
+        <Col className="vh-100">
+          <aside className="m-0">
             <div className="ms-2 mt-2 d-flex justify-content-between">
               <Button variant="secondary" onClick={handleShow}>
                 Search for places
@@ -36,6 +38,10 @@ function App() {
                   <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z" />
                 </svg>
               </Button>
+            </div>
+
+            <div>
+              <PrincipalCard />
             </div>
 
             <Offcanvas show={show} onHide={handleClose}>
