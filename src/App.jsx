@@ -26,7 +26,7 @@ function App() {
     <>
       <Row className="mw-100">
         <Col
-          className="vh-100 container"
+          className="container "
           style={{ background: "#1e213a", color: "#fff" }}
         >
           <aside className="m-0">
@@ -50,7 +50,7 @@ function App() {
               </Button>
             </div>
 
-            <section>
+            <section className="container">
               <PrincipalCard className="mh-100" />
             </section>
 
@@ -165,7 +165,7 @@ function App() {
             </Offcanvas>
           </aside>
         </Col>
-        <Col md={9} className="container">
+        <Col sm={9} className="container">
           <main className="container">
             <div className=".d-none .d-md-block .d-lg-block d-flex justify-content-end grid gap-3 mt-2">
               <Button variant="secondary" className="rounded-circle">
@@ -176,7 +176,7 @@ function App() {
               </Button>
             </div>
             <section className="container mt-3">
-              <Row sm={2} md={4} lg={5} className="grid row-gap-3">
+              <Row xs={2} sm={2} md={3} lg={5} className="grid row-gap-3">
                 {Array.from({ length: 5 }).map((_, idx) => (
                   <Col key={idx}>
                     <SecondaryCards />
@@ -185,7 +185,7 @@ function App() {
               </Row>
             </section>
             <section className="container">
-              <h2 className="my-5 text-start">Today&apos;s Hightlights</h2>
+              <h2 className="my-4 text-start">Today&apos;s Hightlights</h2>
               <Row xs={1} md={2} className="row-gap-4">
                 <Col>
                   <TWindCard />

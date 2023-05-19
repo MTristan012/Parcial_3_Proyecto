@@ -2,12 +2,22 @@ import Card from "react-bootstrap/Card";
 
 export default function TWindCard() {
   return (
-    <Card style={{ background: "#1e213a", color: "#fff", height:"12rem"}}>
-      <Card.Subtitle>Wind status</Card.Subtitle>
-      <Card.Title>7 mph</Card.Title>
+    <Card
+      style={{ background: "#1e213a", color: "#fff", height: "13rem" }}
+      className="d-flex justify-content-center"
+    >
+      <Card.Subtitle
+        style={{ fontFamily: "Raleway", fontWeight: "500", fontSize: "1rem" }}
+      >
+        Wind status
+      </Card.Subtitle>
+      <Card.Title
+        style={{ fontFamily: "Raleway", fontWeight: "700", fontSize: "4rem" }}
+      >
+        7 mph
+      </Card.Title>
       <Card.Text>
-        {" "}
-        <span>
+        <span className="me-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -26,7 +36,11 @@ export default function TWindCard() {
             />
           </svg>
         </span>
-        <span>WSW</span>
+        <span
+          style={{ fontFamily: "Raleway", fontWeight: "400", fontSize: "1rem" }}
+        >
+          WSW
+        </span>
       </Card.Text>
     </Card>
   );
