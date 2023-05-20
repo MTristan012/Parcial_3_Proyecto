@@ -1,7 +1,14 @@
-import "./App.css"
+//Estilos Globales
+import "./App.css";
 
-import { useState } from "react";
+//API's
+import * as APIt from "./services/DataToday";
+import * as API from "./services/DataFutureW";
 
+//Dependencias React
+import { useState, useEffect } from "react";
+
+//Componentes React-Bootstrap
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Form from "react-bootstrap/Form";
@@ -9,7 +16,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import InputGroup from "react-bootstrap/InputGroup";
 import ListGroup from "react-bootstrap/ListGroup";
+import Spinner from "react-bootstrap/Spinner";
 
+//Componentes
 import PrincipalCard from "./components/PrincipalCard";
 import SecondaryCards from "./components/SecondaryCards";
 import TWindCard from "./components/TWindCard";
@@ -18,9 +27,26 @@ import TVisibilityCard from "./components/TVisibilityCard";
 import TAirPCard from "./components/TAirPCard";
 
 function App() {
+  //Constantes Offcanvas
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  //Constantes API
+  const [todayWeather, setTodayWeather] = useState([]);
+  const [futureWeather, setFutureWeather] = useState([]);
+
+  //API filtro por Lat,Lon
+  useEffect(() => {
+    APIt.getAPI(20, -103).then(setTodayWeather).catch(console.log);
+  }, []);
+
+  useEffect(() => {
+    API.getAPI(20, -103).then(setFutureWeather).catch(console.log);
+  }, []);
+
+  console.log(todayWeather);
+  console.log(futureWeather);
 
   return (
     <>
@@ -51,7 +77,16 @@ function App() {
             </div>
 
             <section className="container">
-              <PrincipalCard className="mh-100" />
+              {todayWeather.length === 0 ? (
+                <Spinner animation="border" variant="light" />
+              ) : (
+                <PrincipalCard
+                  className="mh-100"
+                  name={todayWeather.name}
+                  temp={todayWeather.main.temp}
+                  main={todayWeather.weather[0].main}
+                />
+              )}
             </section>
 
             <Offcanvas
@@ -188,16 +223,34 @@ function App() {
               <h2 className="my-4 text-start">Today&apos;s Hightlights</h2>
               <Row xs={1} md={2} className="row-gap-4">
                 <Col>
-                  <TWindCard />
+                  {todayWeather.length === 0 ? (
+                    <Spinner animation="border" variant="light" />
+                  ) : (
+                    <TWindCard speed={todayWeather.wind.speed} />
+                  )}
                 </Col>
                 <Col>
-                  <THumidityCard />
+                  {todayWeather.length === 0 ? (
+                    <Spinner animation="border" variant="light" />
+                  ) : (
+                    <THumidityCard humidity={todayWeather.main.humidity} />
+                  )}
                 </Col>
                 <Col>
-                  <TVisibilityCard />
+                  {todayWeather.length === 0 ? (
+                    <Spinner animation="border" variant="light" />
+                  ) : (
+                    <TVisibilityCard visibility={todayWeather.visibility} />
+                  )}
                 </Col>
                 <Col>
-                  <TAirPCard />
+                  {todayWeather.length === 0 ? (
+                    <Spinner animation="border" variant="light" />
+                  ) : (
+                    <TAirPCard 
+                      pressure={todayWeather.main.pressure}
+                    />
+                  )}
                 </Col>
               </Row>
             </section>

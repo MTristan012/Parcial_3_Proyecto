@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card";
 
-export default function SecondaryCards() {
+export default function SecondaryCards(weather) {
   return (
     <Card
       className="text-center border border-0"
@@ -10,7 +10,7 @@ export default function SecondaryCards() {
         className="mt-3"
         style={{ fontFamily: "Raleway", fontWeight: "500", fontSize: "1rem" }}
       >
-        Tomorrow
+        {weather.date}
       </Card.Title>
       <Card.Img variant="top" src="../../public/assets/LightCloud.png" />
       <Card.Body>
@@ -18,8 +18,8 @@ export default function SecondaryCards() {
           className="d-flex justify-content-around"
           style={{ fontFamily: "Raleway", fontWeight: "400", fontSize: "1rem" }}
         >
-          <span>16ºC</span>
-          <span>11ºC</span>
+          <span>{weather.max} ºC</span>
+          <span>{weather.min}ºC</span>
         </Card.Text>
       </Card.Body>
     </Card>

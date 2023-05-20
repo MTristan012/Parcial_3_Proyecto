@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card";
 
-export default function TVisibilityCard() {
+export default function TVisibilityCard(weather) {
   return (
     <Card
       style={{ background: "#1e213a", color: "#fff", height: "10.5rem" }}
@@ -14,7 +14,7 @@ export default function TVisibilityCard() {
       <Card.Title
         style={{ fontFamily: "Raleway", fontWeight: "700", fontSize: "4rem" }}
       >
-        6,4 miles
+        {weather.visibility*0.62137} miles
       </Card.Title>
     </Card>
   );

@@ -2,7 +2,7 @@ import Card from "react-bootstrap/Card";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
 
-export default function THumidityCard() {
+export default function THumidityCard(weather) {
   return (
     <Card
       style={{ background: "#1e213a", color: "#fff", height: "14rem" }}
@@ -16,14 +16,14 @@ export default function THumidityCard() {
       <Card.Title
         style={{ fontFamily: "Raleway", fontWeight: "700", fontSize: "4rem" }}
       >
-        84%
+        {weather.humidity}%
       </Card.Title>
       <Card.Text className="mb-0 d-flex justify-content-between px-4">
         <span>0</span>
         <span>50</span>
         <span>100</span>
       </Card.Text>
-      <ProgressBar variant="warning" now={60} className="mx-4"/>
+      <ProgressBar variant="warning" now={weather.humidity} className="mx-4" />
       <Card.Text className="text-end px-4">%</Card.Text>
     </Card>
   );
