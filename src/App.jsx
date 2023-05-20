@@ -42,7 +42,7 @@ function App() {
 
   //API filtro por Lat,Lon
   useEffect(() => {
-    APIt.getAPI(20.67, -103.42).then(setTodayWeather).catch(console.log);
+    APIt.getAPI("Zapopan").then(setTodayWeather).catch(console.log);
   }, []);
 
   useEffect(() => {
@@ -256,9 +256,15 @@ function App() {
                   {todayWeather.length === 0 ? (
                     <Spinner animation="border" variant="light" />
                   ) : hideElement ? (
-                    <TWindImpCard speed={todayWeather.wind.speed} />
+                    <TWindImpCard
+                      speed={todayWeather.wind.speed}
+                      deg={todayWeather.wind.deg}
+                    />
                   ) : (
-                    <TWindCard speed={todayWeather.wind.speed} />
+                    <TWindCard
+                      speed={todayWeather.wind.speed}
+                      deg={todayWeather.wind.deg}
+                    />
                   )}
                 </Col>
                 <Col>
