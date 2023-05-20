@@ -38,11 +38,11 @@ function App() {
 
   //API filtro por Lat,Lon
   useEffect(() => {
-    APIt.getAPI(20, -103).then(setTodayWeather).catch(console.log);
+    APIt.getAPI(20.67, -103.42).then(setTodayWeather).catch(console.log);
   }, []);
 
   useEffect(() => {
-    API.getAPI(20, -103).then(setFutureWeather).catch(console.log);
+    API.getAPI(20.67, -103.42).then(setFutureWeather).catch(console.log);
   }, []);
 
   console.log(todayWeather);
