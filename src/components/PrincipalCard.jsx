@@ -18,7 +18,7 @@ export default function PrincipalCard(weather) {
           className="mb-5"
           style={{ fontFamily: "Raleway", fontWeight: "500", fontSize: "7rem" }}
         >
-          {(weather.temp / 10).toFixed(1)} ºC
+          {(weather.temp - 273.15).toFixed(1)} ºC
         </Card.Title>
         <Card.Subtitle
           style={{ fontFamily: "Raleway", fontWeight: "400", fontSize: "2rem" }}

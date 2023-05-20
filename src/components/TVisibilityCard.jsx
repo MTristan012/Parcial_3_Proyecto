@@ -14,7 +14,7 @@ export default function TVisibilityCard(weather) {
       <Card.Title
         style={{ fontFamily: "Raleway", fontWeight: "700", fontSize: "4rem" }}
       >
-        {weather.visibility*0.62137} miles
+        {weather.visibility/1000} Km
       </Card.Title>
     </Card>
   );

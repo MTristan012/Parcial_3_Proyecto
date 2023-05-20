@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card";
 
-export default function TAirPCard(weather) {
+export default function TAirPImpCard(weather) {
   return (
     <Card
       style={{ background: "#1e213a", color: "#fff", height: "10.5rem" }}
@@ -14,7 +14,7 @@ export default function TAirPCard(weather) {
       <Card.Title
         style={{ fontFamily: "Raleway", fontWeight: "700", fontSize: "4rem" }}
       >
-        {weather.pressure} hPa
+        {weather.pressure} mb
       </Card.Title>
     </Card>
   );

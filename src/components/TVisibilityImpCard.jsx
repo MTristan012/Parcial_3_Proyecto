@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card";
 
-export default function TAirPCard(weather) {
+export default function TVisibilityImpCard(weather) {
   return (
     <Card
       style={{ background: "#1e213a", color: "#fff", height: "10.5rem" }}
@@ -9,12 +9,12 @@ export default function TAirPCard(weather) {
       <Card.Subtitle
         style={{ fontFamily: "Raleway", fontWeight: "400", fontSize: "1rem" }}
       >
-        Air Pressure
+        Visibility
       </Card.Subtitle>
       <Card.Title
-        style={{ fontFamily: "Raleway", fontWeight: "700", fontSize: "4rem" }}
+        style={{ fontFamily: "Raleway", fontWeight: "700", fontSize: "3.5rem" }}
       >
-        {weather.pressure} hPa
+        {weather.visibility * 0.62137} miles
       </Card.Title>
     </Card>
   );

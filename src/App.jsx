@@ -23,9 +23,12 @@ import PrincipalCard from "./components/PrincipalCard";
 import PrincipalFCard from "./components/PrincipalFCard";
 import SecondaryCards from "./components/SecondaryCards";
 import TWindCard from "./components/TWindCard";
+import TWindImpCard from "./components/TWindImpCard"
 import THumidityCard from "./components/THumidity";
 import TVisibilityCard from "./components/TVisibilityCard";
+import TVisibilityImpCard from "./components/TVisibilityImpCard";
 import TAirPCard from "./components/TAirPCard";
+import TAirPImpCard from "./components/TAirPImpCard";
 
 function App() {
   //Constantes Offcanvas
@@ -89,23 +92,22 @@ function App() {
             <section className="container">
               {todayWeather.length === 0 ? (
                 <Spinner animation="border" variant="light" />
-              ) : ( hideElement ? (
-                  <PrincipalFCard
-                    className="mh-100"
-                    name={todayWeather.name}
-                    temp={todayWeather.main.temp}
-                    main={todayWeather.weather[0].main}
-                    style={{ display: hideElement ? "none" : "block" }}
-                  />
-                ) : (
-                  <PrincipalCard
-                    className="mh-100"
-                    name={todayWeather.name}
-                    temp={todayWeather.main.temp}
-                    main={todayWeather.weather[0].main}
-                    style={{ display: hideElement ? "block" : "none" }}
-                  />
-                )
+              ) : hideElement ? (
+                <PrincipalFCard
+                  className="mh-100"
+                  name={todayWeather.name}
+                  temp={todayWeather.main.temp}
+                  main={todayWeather.weather[0].main}
+                  style={{ display: hideElement ? "none" : "block" }}
+                />
+              ) : (
+                <PrincipalCard
+                  className="mh-100"
+                  name={todayWeather.name}
+                  temp={todayWeather.main.temp}
+                  main={todayWeather.weather[0].main}
+                  style={{ display: hideElement ? "block" : "none" }}
+                />
               )}
             </section>
 
@@ -253,6 +255,8 @@ function App() {
                 <Col>
                   {todayWeather.length === 0 ? (
                     <Spinner animation="border" variant="light" />
+                  ) : hideElement ? (
+                    <TWindImpCard speed={todayWeather.wind.speed} />
                   ) : (
                     <TWindCard speed={todayWeather.wind.speed} />
                   )}
@@ -267,6 +271,8 @@ function App() {
                 <Col>
                   {todayWeather.length === 0 ? (
                     <Spinner animation="border" variant="light" />
+                  ) : hideElement ? (
+                    <TVisibilityImpCard visibility={todayWeather.visibility} />
                   ) : (
                     <TVisibilityCard visibility={todayWeather.visibility} />
                   )}
@@ -274,6 +280,8 @@ function App() {
                 <Col>
                   {todayWeather.length === 0 ? (
                     <Spinner animation="border" variant="light" />
+                  ) : hideElement ? (
+                    <TAirPImpCard pressure={todayWeather.main.pressure} />
                   ) : (
                     <TAirPCard pressure={todayWeather.main.pressure} />
                   )}

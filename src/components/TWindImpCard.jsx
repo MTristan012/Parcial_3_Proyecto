@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card";
 
-export default function TWindCard(weather) {
+export default function TWindImpCard(weather) {
   return (
     <Card
       style={{ background: "#1e213a", color: "#fff", height: "14rem" }}
@@ -14,7 +14,7 @@ export default function TWindCard(weather) {
       <Card.Title
         style={{ fontFamily: "Raleway", fontWeight: "700", fontSize: "4rem" }}
       >
-        {weather.speed} m/s
+        {(weather.speed * 2.23694).toFixed(2)} mph
       </Card.Title>
       <Card.Text>
         <span className="me-2">
