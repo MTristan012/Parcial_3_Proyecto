@@ -20,6 +20,7 @@ import Spinner from "react-bootstrap/Spinner";
 
 //Componentes
 import PrincipalCard from "./components/PrincipalCard";
+import PrincipalFCard from "./components/PrincipalFCard";
 import SecondaryCards from "./components/SecondaryCards";
 import TWindCard from "./components/TWindCard";
 import THumidityCard from "./components/THumidity";
@@ -47,6 +48,15 @@ function App() {
 
   console.log(todayWeather);
   console.log(futureWeather);
+
+  //Constantes Botones cambio de medicion
+  const [hideElement, setHideElement] = useState(false);
+  const changeToF = () => {
+    setHideElement(true);
+  };
+  const changeToC = () => {
+    setHideElement(false);
+  };
 
   return (
     <>
@@ -79,13 +89,23 @@ function App() {
             <section className="container">
               {todayWeather.length === 0 ? (
                 <Spinner animation="border" variant="light" />
-              ) : (
-                <PrincipalCard
-                  className="mh-100"
-                  name={todayWeather.name}
-                  temp={todayWeather.main.temp}
-                  main={todayWeather.weather[0].main}
-                />
+              ) : ( hideElement ? (
+                  <PrincipalFCard
+                    className="mh-100"
+                    name={todayWeather.name}
+                    temp={todayWeather.main.temp}
+                    main={todayWeather.weather[0].main}
+                    style={{ display: hideElement ? "none" : "block" }}
+                  />
+                ) : (
+                  <PrincipalCard
+                    className="mh-100"
+                    name={todayWeather.name}
+                    temp={todayWeather.main.temp}
+                    main={todayWeather.weather[0].main}
+                    style={{ display: hideElement ? "block" : "none" }}
+                  />
+                )
               )}
             </section>
 
@@ -203,10 +223,18 @@ function App() {
         <Col sm={9} className="container">
           <main className="container">
             <div className=".d-none .d-md-block .d-lg-block d-flex justify-content-end grid gap-3 mt-2">
-              <Button variant="secondary" className="rounded-circle">
+              <Button
+                variant="secondary"
+                className="rounded-circle"
+                onClick={changeToC}
+              >
                 ºC
               </Button>
-              <Button variant="secondary" className="rounded-circle">
+              <Button
+                variant="secondary"
+                className="rounded-circle"
+                onClick={changeToF}
+              >
                 ºF
               </Button>
             </div>
@@ -247,9 +275,7 @@ function App() {
                   {todayWeather.length === 0 ? (
                     <Spinner animation="border" variant="light" />
                   ) : (
-                    <TAirPCard 
-                      pressure={todayWeather.main.pressure}
-                    />
+                    <TAirPCard pressure={todayWeather.main.pressure} />
                   )}
                 </Col>
               </Row>
