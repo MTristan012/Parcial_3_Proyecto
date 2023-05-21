@@ -3,6 +3,7 @@ import "./App.css";
 
 //API's
 import * as APIt from "./services/DataToday";
+import * as APIGeo from "./services/DataGeoApi";
 //import * as API from "./services/DataFutureW";
 
 //Dependencias React
@@ -23,7 +24,7 @@ import PrincipalCard from "./components/PrincipalCard";
 import PrincipalFCard from "./components/PrincipalFCard";
 import SecondaryCards from "./components/SecondaryCards";
 import TWindCard from "./components/TWindCard";
-import TWindImpCard from "./components/TWindImpCard"
+import TWindImpCard from "./components/TWindImpCard";
 import THumidityCard from "./components/THumidity";
 import TVisibilityCard from "./components/TVisibilityCard";
 import TVisibilityImpCard from "./components/TVisibilityImpCard";
@@ -37,23 +38,22 @@ function App() {
   const handleShow = () => setShow(true);
 
   //Constantes Filtro por Ciudad
-  const [city, setCity] = useState("zapopan")
+  const [city, setCity] = useState("zapopan");
 
-  //Constantes Offcanvas Search 
- const changeCity = () => {
-   const searchInput = document.getElementById("searchInput");
-   if (searchInput) {
-     setCity(searchInput.value);
-   }
-   handleClose()
- };
-
- useEffect(() => {
-   const searchInput = document.getElementById("searchInput");
-   if (searchInput) {
-     searchInput.value = city;
-   }
- }, [city]);
+  //Constantes Offcanvas Search
+  const changeCity = () => {
+    const searchInput = document.getElementById("searchInput");
+    if (searchInput) {
+      setCity(searchInput.value);
+    }
+    handleClose();
+  };
+  useEffect(() => {
+    const searchInput = document.getElementById("searchInput");
+    if (searchInput) {
+      searchInput.value = city;
+    }
+  }, [city]);
 
   //Constantes Offcanvas botones
   const changeCityZapopan = () => {
@@ -64,14 +64,42 @@ function App() {
     setCity("Mexico City");
     handleClose();
   };
-  const changeCityBogota = () =>{
+  const changeCityBogota = () => {
     setCity("Bogota");
     handleClose();
-  }
+  };
 
   //Constantes API
   const [todayWeather, setTodayWeather] = useState([]);
   //const [futureWeather, setFutureWeather] = useState([]);
+
+  //Constantes Geolocalizacion
+  const [lat, setLatitude] = useState(null);
+  const [lon, setLongitude] = useState(null);
+  const [error, setError] = useState(null);
+  const [geo, setGeo] = useState("");
+
+  //useEffect para acceder a Lat y Lon
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude);
+        },
+        (error) => {
+          setError(error.message);
+        }
+      );
+    } else {
+      setError("Geolocation is not supported by your browser.");
+    }
+  }, [geo, lat, lon]);
+
+  const ChangeGeo = () => {
+    APIGeo.getAPI(lat, lon).then(setGeo).catch(console.log);
+    geo[0] ? setCity(geo[0].name) : console.log(error);
+  };
 
   //API filtro por Ciudad
   useEffect(() => {
@@ -107,7 +135,11 @@ function App() {
                 Search for places
               </Button>
 
-              <Button variant="secondary" className="rounded-circle">
+              <Button
+                variant="secondary"
+                className="rounded-circle"
+                onClick={ChangeGeo}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -157,7 +189,7 @@ function App() {
                   className="d-flex"
                   onSubmit={(e) => {
                     e.preventDefault();
-                    changeCity()
+                    changeCity();
                   }}
                 >
                   <InputGroup
