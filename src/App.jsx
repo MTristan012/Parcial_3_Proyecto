@@ -4,7 +4,7 @@ import "./App.css";
 //API's
 import * as APIt from "./services/DataToday";
 import * as APIGeo from "./services/DataGeoApi";
-//import * as API from "./services/DataFutureW";
+import * as API from "./services/DataFutureW";
 
 //Dependencias React
 import { useState, useEffect } from "react";
@@ -71,7 +71,7 @@ function App() {
 
   //Constantes API
   const [todayWeather, setTodayWeather] = useState([]);
-  //const [futureWeather, setFutureWeather] = useState([]);
+  const [futureWeather, setFutureWeather] = useState([]);
 
   //Constantes Geolocalizacion
   const [lat, setLatitude] = useState(null);
@@ -96,6 +96,7 @@ function App() {
     }
   }, [geo, lat, lon]);
 
+  //API para buscar Geo
   const ChangeGeo = () => {
     APIGeo.getAPI(lat, lon).then(setGeo).catch(console.log);
     geo[0] ? setCity(geo[0].name) : console.log(error);
@@ -105,13 +106,11 @@ function App() {
   useEffect(() => {
     APIt.getAPI(city).then(setTodayWeather).catch(console.log);
   }, [city]);
-
-  //API filtro por Coordenadas
-  /*
   useEffect(() => {
-    API.getAPI(20.67, -103.42).then(setFutureWeather).catch(console.log);
-  }, []);
-  */
+    API.getAPI(city).then(setFutureWeather).catch(console.log);
+  }, [city]);
+
+  console.log(futureWeather);
 
   //Constantes Botones cambio de medicion
   const [hideElement, setHideElement] = useState(false);
