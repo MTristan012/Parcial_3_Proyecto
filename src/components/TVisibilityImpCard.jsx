@@ -14,7 +14,7 @@ export default function TVisibilityImpCard(weather) {
       <Card.Title
         style={{ fontFamily: "Raleway", fontWeight: "700", fontSize: "3.5rem" }}
       >
-        {weather.visibility * 0.62137} miles
+        {(weather.visibility * 0.62137).toFixed(2)} miles
       </Card.Title>
     </Card>
   );

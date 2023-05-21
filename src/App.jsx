@@ -3,7 +3,7 @@ import "./App.css";
 
 //API's
 import * as APIt from "./services/DataToday";
-import * as API from "./services/DataFutureW";
+//import * as API from "./services/DataFutureW";
 
 //Dependencias React
 import { useState, useEffect } from "react";
@@ -36,21 +36,54 @@ function App() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  //Constantes Filtro por Ciudad
+  const [city, setCity] = useState("zapopan")
+
+  //Constantes Offcanvas Search 
+ const changeCity = () => {
+   const searchInput = document.getElementById("searchInput");
+   if (searchInput) {
+     setCity(searchInput.value);
+   }
+   handleClose()
+ };
+
+ useEffect(() => {
+   const searchInput = document.getElementById("searchInput");
+   if (searchInput) {
+     searchInput.value = city;
+   }
+ }, [city]);
+
+  //Constantes Offcanvas botones
+  const changeCityZapopan = () => {
+    setCity("Zapopan");
+    handleClose();
+  };
+  const changeCityMX = () => {
+    setCity("Mexico City");
+    handleClose();
+  };
+  const changeCityBogota = () =>{
+    setCity("Bogota");
+    handleClose();
+  }
+
   //Constantes API
   const [todayWeather, setTodayWeather] = useState([]);
-  const [futureWeather, setFutureWeather] = useState([]);
+  //const [futureWeather, setFutureWeather] = useState([]);
 
-  //API filtro por Lat,Lon
+  //API filtro por Ciudad
   useEffect(() => {
-    APIt.getAPI("Zapopan").then(setTodayWeather).catch(console.log);
-  }, []);
+    APIt.getAPI(city).then(setTodayWeather).catch(console.log);
+  }, [city]);
 
+  //API filtro por Coordenadas
+  /*
   useEffect(() => {
     API.getAPI(20.67, -103.42).then(setFutureWeather).catch(console.log);
   }, []);
-
-  console.log(todayWeather);
-  console.log(futureWeather);
+  */
 
   //Constantes Botones cambio de medicion
   const [hideElement, setHideElement] = useState(false);
@@ -63,9 +96,9 @@ function App() {
 
   return (
     <>
-      <Row className="mw-100">
+      <Row className="w-100">
         <Col
-          className="container "
+          className="container"
           style={{ background: "#1e213a", color: "#fff" }}
         >
           <aside className="m-0">
@@ -116,9 +149,17 @@ function App() {
               onHide={handleClose}
               style={{ background: "#1e213a", color: "#fff" }}
             >
-              <Offcanvas.Header closeButton></Offcanvas.Header>
+              <Offcanvas.Header style={{ color: "#fff" }} closeButton>
+                Search by City
+              </Offcanvas.Header>
               <Offcanvas.Body>
-                <Form className="d-flex">
+                <Form
+                  className="d-flex"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    changeCity()
+                  }}
+                >
                   <InputGroup
                     className="me-2"
                     style={{ background: "#1e213a", color: "#fff" }}
@@ -139,18 +180,21 @@ function App() {
                       </svg>
                     </InputGroup.Text>
                     <Form.Control
+                      id="searchInput"
                       placeholder="search location"
                       aria-label="Search"
                       aria-describedby="basic-addon1"
                       style={{ background: "#1e213a", color: "#fff" }}
                     />
                   </InputGroup>
-                  <Button variant="primary">Search</Button>
+                  <Button variant="primary" type="submit">
+                    Search
+                  </Button>
                 </Form>
                 <ListGroup variant="flush" className="mt-4">
                   <ListGroup.Item
                     action
-                    href="#link1"
+                    onClick={changeCityZapopan}
                     className="mb-3 d-flex justify-content-between"
                     style={{ background: "#1e213a", color: "#fff" }}
                   >
@@ -173,11 +217,11 @@ function App() {
                   </ListGroup.Item>
                   <ListGroup.Item
                     action
-                    href="#link2"
+                    onClick={changeCityMX}
                     className="mb-3 d-flex justify-content-between"
                     style={{ background: "#1e213a", color: "#fff" }}
                   >
-                    <span>Zapopan</span>
+                    <span>Mexico City</span>
                     <span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -196,11 +240,11 @@ function App() {
                   </ListGroup.Item>
                   <ListGroup.Item
                     action
-                    href="#link3"
+                    onClick={changeCityBogota}
                     className="mb-3 d-flex justify-content-between"
                     style={{ background: "#1e213a", color: "#fff" }}
                   >
-                    <span>Zapopan</span>
+                    <span>Bogota</span>
                     <span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -222,7 +266,7 @@ function App() {
             </Offcanvas>
           </aside>
         </Col>
-        <Col sm={9} className="container">
+        <Col md={8} xl={9} className="container">
           <main className="container">
             <div className=".d-none .d-md-block .d-lg-block d-flex justify-content-end grid gap-3 mt-2">
               <Button
@@ -241,7 +285,14 @@ function App() {
               </Button>
             </div>
             <section className="container mt-3">
-              <Row xs={2} sm={2} md={3} lg={5} className="grid row-gap-3">
+              <Row
+                xs={2}
+                sm={2}
+                md={2}
+                lg={3}
+                xl={5}
+                className="grid row-gap-3"
+              >
                 {Array.from({ length: 5 }).map((_, idx) => (
                   <Col key={idx}>
                     <SecondaryCards />

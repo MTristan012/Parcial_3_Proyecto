@@ -11,7 +11,6 @@ export default function PrincipalFCard(weather) {
     >
       <Card.Img variant="top" src="../../public/assets/HeavyCloud.png" />
       <br />
-      <br />
       <Card.Body className="text-center">
         <br />
         <Card.Title
