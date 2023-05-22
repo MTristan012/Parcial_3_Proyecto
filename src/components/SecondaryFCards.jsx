@@ -1,7 +1,6 @@
 import Card from "react-bootstrap/Card";
 
-export default function SecondaryFCards(weather) {
-
+export default function SecondaryCards(day) {
   const weatherMain = {
     Clear: "./assets/Clear.png",
     Hail: "./assets/Hail.png",
@@ -15,7 +14,7 @@ export default function SecondaryFCards(weather) {
     Thunderstorm: "./assets/Thunderstorm.png",
   };
 
-  const mainWeather = weatherMain[weather.main];
+  const mainWeather = weatherMain[day.main];
 
   return (
     <Card
@@ -26,7 +25,7 @@ export default function SecondaryFCards(weather) {
         className="mt-3"
         style={{ fontFamily: "Raleway", fontWeight: "500", fontSize: "1rem" }}
       >
-        {weather.date}
+        {day.dt_txt}
       </Card.Title>
       <Card.Img
         variant="top"
@@ -37,8 +36,8 @@ export default function SecondaryFCards(weather) {
           className="d-flex justify-content-around"
           style={{ fontFamily: "Raleway", fontWeight: "400", fontSize: "1rem" }}
         >
-          <span>{weather.max} ºF</span>
-          <span>{weather.min} ºF</span>
+          <span>{((day.temp_max - 273.15) * (9 / 5) + 32).toFixed(1)} ºF</span>
+          <span>{((day.temp_min - 273.15) * (9 / 5) + 32).toFixed(1)} ºF</span>
         </Card.Text>
       </Card.Body>
     </Card>

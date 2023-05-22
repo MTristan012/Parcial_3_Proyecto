@@ -23,6 +23,7 @@ import Spinner from "react-bootstrap/Spinner";
 import PrincipalCard from "./components/PrincipalCard";
 import PrincipalFCard from "./components/PrincipalFCard";
 import SecondaryCards from "./components/SecondaryCards";
+import SecondaryFCards from "./components/SecondaryFCards";
 import TWindCard from "./components/TWindCard";
 import TWindImpCard from "./components/TWindImpCard";
 import THumidityCard from "./components/THumidity";
@@ -110,7 +111,80 @@ function App() {
     API.getAPI(city).then(setFutureWeather).catch(console.log);
   }, [city]);
 
-  console.log(futureWeather);
+  //Variables y Constantes Clima dentro de 5 dias
+  let forecastWeather = []
+  let maxDay1 = [];
+  let minDay1 = [];
+  let maxDay2 = [];
+  let minDay2 = [];
+  let maxDay3 = [];
+  let minDay3 = [];
+  let maxDay4 = [];
+  let minDay4 = [];
+  let maxDay5 = [];
+  let minDay5 = [];
+
+  if (futureWeather.length === 0) {
+    let a = "Vacio";
+    console.log(a);
+  } else {
+    for (let i = 0; i < 8; i++) {
+      maxDay1.push(futureWeather.list[i].main.temp_max);
+      minDay1.push(futureWeather.list[i].main.temp_min);
+    }
+    for (let i = 8; i < 16; i++) {
+      maxDay2.push(futureWeather.list[i].main.temp_max);
+      minDay2.push(futureWeather.list[i].main.temp_min);
+    }
+    for (let i = 16; i < 24; i++) {
+      maxDay3.push(futureWeather.list[i].main.temp_max);
+      minDay3.push(futureWeather.list[i].main.temp_min);
+    }
+    for (let i = 24; i < 32; i++) {
+      maxDay4.push(futureWeather.list[i].main.temp_max);
+      minDay4.push(futureWeather.list[i].main.temp_min);
+    }
+    for (let i = 32; i < 40; i++) {
+      maxDay5.push(futureWeather.list[i].main.temp_max);
+      minDay5.push(futureWeather.list[i].main.temp_min);
+    }
+
+    forecastWeather = [
+      {
+        main: futureWeather.list[4].weather[0].main,
+        temp_max: Math.max(...maxDay1),
+        temp_min: Math.min(...minDay1),
+        dt_txt: futureWeather.list[4].dt_txt.split()[0],
+      },
+      {
+        main: futureWeather.list[12].weather[0].main,
+        temp_max: Math.max(...maxDay2),
+        temp_min: Math.min(...minDay2),
+        dt_txt: futureWeather.list[12].dt_txt.split()[0],
+      },
+      {
+        main: futureWeather.list[20].weather[0].main,
+        temp_max: Math.max(...maxDay3),
+        temp_min: Math.min(...minDay3),
+        dt_txt: futureWeather.list[20].dt_txt.split()[0],
+      },
+      {
+        main: futureWeather.list[28].weather[0].main,
+        temp_max: Math.max(...maxDay4),
+        temp_min: Math.min(...minDay4),
+        dt_txt: futureWeather.list[28].dt_txt.split()[0],
+      },
+      {
+        main: futureWeather.list[36].weather[0].main,
+        temp_max: Math.max(...maxDay5),
+        temp_min: Math.min(...minDay5),
+        dt_txt: futureWeather.list[36].dt_txt.split()[0],
+      },
+    ];
+
+    console.log(forecastWeather)
+
+  }
 
   //Constantes Botones cambio de medicion
   const [hideElement, setHideElement] = useState(false);
@@ -324,11 +398,31 @@ function App() {
                 xl={5}
                 className="grid row-gap-3"
               >
-                {Array.from({ length: 5 }).map((_, idx) => (
-                  <Col key={idx}>
-                    <SecondaryCards />
-                  </Col>
-                ))}
+                {forecastWeather === 0 ? (
+                  <Spinner animation="border" variant="light" />
+                ) : (
+                  forecastWeather.map((day, idx) => (
+                    <Col key={idx}>
+                      {hideElement ? (
+                        <SecondaryFCards
+                          main={day.main}
+                          temp_max={day.temp_max}
+                          temp_min={day.temp_min}
+                          dt_txt={day.txt}
+                          style={{ display: hideElement ? "none" : "block" }}
+                        />
+                      ) : (
+                        <SecondaryCards
+                          main={day.main}
+                          temp_max={day.temp_max}
+                          temp_min={day.temp_min}
+                          dt_txt={day.txt}
+                          style={{ display: hideElement ? "block" : "none" }}
+                        />
+                      )}
+                    </Col>
+                  ))
+                )}
               </Row>
             </section>
             <section className="container">
