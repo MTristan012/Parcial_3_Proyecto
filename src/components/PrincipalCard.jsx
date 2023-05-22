@@ -1,15 +1,30 @@
 import Card from "react-bootstrap/Card";
 
 export default function PrincipalCard(weather) {
-  /* ./assets/Clear.png */
+
   const today = new Date()
+
+  const weatherMain = {
+    Clear: "./assets/Clear.png",
+    Hail: "./assets/Hail.png",
+    "Heavy Cloud": "./assets/HeavyCloud.png",
+    "Heavy Rain": "./assets/HeavyRain.png",
+    "Light Cloud": "./assets/LightCloud.png",
+    "Light Rain": "./assets/LightCloud.png",
+    Shower: "./assets/Shower.png",
+    Sleet: "./assets/Sleet.png",
+    Snow: "./assets/Snow.png",
+    Thunderstorm: "./assets/Thunderstorm.png",
+  };
+
+  const mainWeather = weatherMain[weather.main]; 
 
   return (
     <Card
       className="border border-0 d-flex justify-content-center"
       style={{ background: "#1e213a", color: "#fff" }}
     >
-      <Card.Img variant="top" src="../../public/assets/HeavyCloud.png" />
+      <Card.Img variant="top" src={mainWeather ? mainWeather : weatherMain["Light Cloud"]} />
       <br />
       <br />
       <Card.Body className="text-center">
