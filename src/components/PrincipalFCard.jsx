@@ -10,7 +10,7 @@ export default function PrincipalFCard(weather) {
     "Heavy Cloud": "./assets/HeavyCloud.png",
     "Heavy Rain": "./assets/HeavyRain.png",
     "Light Cloud": "./assets/LightCloud.png",
-    "Light Rain": "./assets/LightCloud.png",
+    Rain: "./assets/LightRain.png",
     Shower: "./assets/Shower.png",
     Sleet: "./assets/Sleet.png",
     Snow: "./assets/Snow.png",

@@ -408,7 +408,7 @@ function App() {
                           main={day.main}
                           temp_max={day.temp_max}
                           temp_min={day.temp_min}
-                          dt_txt={day.txt}
+                          dt_txt={day.dt_txt}
                           style={{ display: hideElement ? "none" : "block" }}
                         />
                       ) : (
@@ -416,7 +416,7 @@ function App() {
                           main={day.main}
                           temp_max={day.temp_max}
                           temp_min={day.temp_min}
-                          dt_txt={day.txt}
+                          dt_txt={day.dt_txt}
                           style={{ display: hideElement ? "block" : "none" }}
                         />
                       )}

@@ -7,7 +7,7 @@ export default function SecondaryCards(day) {
     "Heavy Cloud": "./assets/HeavyCloud.png",
     "Heavy Rain": "./assets/HeavyRain.png",
     "Light Cloud": "./assets/LightCloud.png",
-    "Light Rain": "./assets/LightCloud.png",
+    Rain: "./assets/LightRain.png",
     Shower: "./assets/Shower.png",
     Sleet: "./assets/Sleet.png",
     Snow: "./assets/Snow.png",
@@ -15,6 +15,14 @@ export default function SecondaryCards(day) {
   };
 
   const mainWeather = weatherMain[day.main];
+
+  let data = day.dt_txt
+  data.substring(0, 10);
+  let newFormat = new Date(data)
+
+  let dayWeek = newFormat.toLocaleDateString("en-En", {weekday: "long"})
+  let dayMonth = newFormat.getDate()
+  let months = newFormat.toLocaleString("en-En", {month: "long"})
 
   return (
     <Card
@@ -25,7 +33,7 @@ export default function SecondaryCards(day) {
         className="mt-3"
         style={{ fontFamily: "Raleway", fontWeight: "500", fontSize: "1rem" }}
       >
-        {day.dt_txt}
+        {`${dayWeek}, ${dayMonth} ${months}`}
       </Card.Title>
       <Card.Img
         variant="top"
