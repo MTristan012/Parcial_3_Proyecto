@@ -181,9 +181,6 @@ function App() {
         dt_txt: futureWeather.list[36].dt_txt.split()[0],
       },
     ];
-
-    console.log(forecastWeather)
-
   }
 
   //Constantes Botones cambio de medicion
