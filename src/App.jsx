@@ -45,7 +45,7 @@ function App() {
   const changeCity = () => {
     const searchInput = document.getElementById("searchInput");
     if (searchInput) {
-      setCity(searchInput.value);
+      setCity(searchInput.value === "" ? searchInput.value = "Zapopan": searchInput.value);
     }
     handleClose();
   };
