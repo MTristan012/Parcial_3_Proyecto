@@ -27,6 +27,9 @@ export default function PrincipalFCard(weather) {
       <Card.Img
         variant="top"
         src={mainWeather ? mainWeather : weatherMain["Light Cloud"]}
+        alt={weather.main}
+        className="object-fit-fill"
+        style={{ height: "26rem" }}
       />
       <br />
       <br />

@@ -39,6 +39,9 @@ export default function SecondaryFCards(day) {
       <Card.Img
         variant="top"
         src={mainWeather ? mainWeather : weatherMain["Light Cloud"]}
+        alt={day.main}
+        className="object-fit-fill"
+        style={{height: "14rem"}}
       />
       <Card.Body>
         <Card.Text

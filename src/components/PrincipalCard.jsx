@@ -24,7 +24,13 @@ export default function PrincipalCard(weather) {
       className="border border-0 d-flex justify-content-center"
       style={{ background: "#1e213a", color: "#fff" }}
     >
-      <Card.Img variant="top" src={mainWeather ? mainWeather : weatherMain["Light Cloud"]} />
+      <Card.Img
+        variant="top"
+        src={mainWeather ? mainWeather : weatherMain["Light Cloud"]}
+        alt={weather.main}
+        className="object-fit-fill"
+        style={{ height: "26rem" }}
+      />
       <br />
       <br />
       <Card.Body className="text-center">
