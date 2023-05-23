@@ -7,7 +7,7 @@ export default function SecondaryFCards(day) {
     Hail: "./assets/Hail.png",
     "Heavy Cloud": "./assets/HeavyCloud.png",
     "Heavy Rain": "./assets/HeavyRain.png",
-    "Light Cloud": "./assets/LightCloud.png",
+    Clouds: "./assets/LightCloud.png",
     Rain: "./assets/LightRain.png",
     Shower: "./assets/Shower.png",
     Sleet: "./assets/Sleet.png",
@@ -38,7 +38,7 @@ export default function SecondaryFCards(day) {
       </Card.Title>
       <Card.Img
         variant="top"
-        src={mainWeather ? mainWeather : weatherMain["Light Cloud"]}
+        src={mainWeather ? mainWeather : weatherMain["Clouds"]}
         alt={day.main}
         className="object-fit-fill"
         style={{height: "14rem"}}
